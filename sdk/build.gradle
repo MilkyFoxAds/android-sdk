@@ -6,42 +6,47 @@
  * **********************
  */
 
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+
+ext {
+    libraryCompileSdkVersion = 25
+    libraryBuildToolsVersion = '25.0.0'
+
+    libraryVersion = '1.0.0'
+    libraryVersionCode = 1
+}
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+
     defaultConfig {
-        applicationId "com.milkyfox.app"
         minSdkVersion 12
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode libraryVersionCode
+        versionName libraryVersion
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
 
-    signingConfigs {
-        releaseConfig {
-            storeFile file("keystore.jks")
-            storePassword "Ufr6fLz2vpVkznB3zQMy"
-            keyAlias "milkyfox"
-            keyPassword "m36vMRnaBrPtCVQT6m3x"
-        }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    android {
+        resourcePrefix 'milkyfox_'
     }
 
     buildTypes {
         release {
-            debuggable false
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.releaseConfig
-        }
-
-        debug {
-            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.releaseConfig
         }
     }
 }
@@ -52,11 +57,5 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:recyclerview-v7:25.2.0'
     testCompile 'junit:junit:4.12'
-
-    //Admob
-    compile 'com.google.android.gms:play-services-ads:9.2.0'
-
-    compile project(':sdk')
 }
