@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ ***********************
+  ~ Copyright (c) 2017.
+  ~ MilkyFox
+  ~ http://milkyfox.com
+  ~ ***********************
+  -->
+
+<resources>
+
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/buttonColor</item>
+        <item name="android:colorButtonNormal">@color/buttonColor</item>
+        <item name="android:textColor">@color/actionBar</item>
+    </style>
+</resources>

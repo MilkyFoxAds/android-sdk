@@ -10,7 +10,8 @@
 <resources>
     <color name="colorPrimary">#ef8358</color>
     <color name="colorPrimaryDark">#bd6846</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#bd6846</color>
     <color name="text">#555</color>
+    <color name="buttonColor">#ef8358</color>
     <color name="actionBar">#fff</color>
 </resources>
