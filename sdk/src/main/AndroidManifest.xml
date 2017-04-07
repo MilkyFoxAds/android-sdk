@@ -6,10 +6,33 @@
   ~ ***********************
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.milkyfox.sdk">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.milkyfox.sdk">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!--for MRAID store picture-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--for MRAID store picture end-->
+
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
 
     <application>
-
+        <!--AdMob-->
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+        <!--AdMob end-->
     </application>
 
 </manifest>
