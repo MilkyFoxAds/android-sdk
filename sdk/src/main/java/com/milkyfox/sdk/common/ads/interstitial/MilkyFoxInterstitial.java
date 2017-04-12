@@ -25,6 +25,7 @@ import com.milkyfox.sdk.internal.server.response.impl.LoadInterstitialSuccessRes
 import com.milkyfox.sdk.internal.utils.MilkyFoxLog;
 
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Set;
 
 
@@ -209,7 +210,7 @@ public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstiti
                         }
                     }
                 });
-                MilkyFoxLog.log(String.format("preload %s", mCurController.getDisplay()));
+                MilkyFoxLog.log(String.format(Locale.US, "preload %s", mCurController.getDisplay()));
                 mCurController.preload(mActivity);
             } catch (Throwable ex) {
                 ex.printStackTrace();

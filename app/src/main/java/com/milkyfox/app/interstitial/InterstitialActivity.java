@@ -81,7 +81,7 @@ public class InterstitialActivity extends AppCompatActivity {
 
     private void show() {
         if (mMilkyFoxInterstitial != null && mMilkyFoxInterstitial.isLoaded()) {
-            show();
+            mMilkyFoxInterstitial.show();
         }
     }
 
@@ -95,11 +95,13 @@ public class InterstitialActivity extends AppCompatActivity {
                 @Override
                 public void load(MilkyFoxInterstitial interstitial) {
                     ToastHelper.showToast(InterstitialActivity.this, "load");
+                    updateUI();
                 }
 
                 @Override
                 public void fail(MilkyFoxInterstitial interstitial) {
                     ToastHelper.showToast(InterstitialActivity.this, "fail");
+                    updateUI();
                 }
 
                 @Override
@@ -115,6 +117,7 @@ public class InterstitialActivity extends AppCompatActivity {
                 @Override
                 public void close(MilkyFoxInterstitial interstitial) {
                     ToastHelper.showToast(InterstitialActivity.this, "close");
+                    updateUI();
                 }
             });
 

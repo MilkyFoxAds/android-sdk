@@ -17,9 +17,18 @@ public class HmacHelper {
 
     public static String encode(String key, String data) throws Exception {
         Mac mac = Mac.getInstance("HmacSHA256");
-        SecretKeySpec sk = new SecretKeySpec(key.getBytes("UTF-8"), mac.getAlgorithm());
+        SecretKeySpec sk = new SecretKeySpec(key.getBytes(), mac.getAlgorithm());
         mac.init(sk);
-        byte[] result = mac.doFinal(data.getBytes("UTF-8"));
+        byte[] result = mac.doFinal(data.getBytes());
+//        StringBuffer hash = new StringBuffer();
+//        for (int i = 0; i < result.length; i++) {
+//            String hex = Integer.toHexString(0xFF & result[i]);
+//            if (hex.length() == 1) {
+//                hash.append('0');
+//            }
+//            hash.append(hex);
+//        }
+//        String hex = hash.toString();
         return Base64.encodeToString(result , Base64.DEFAULT);
     }
 }

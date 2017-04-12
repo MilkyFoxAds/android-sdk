@@ -43,21 +43,23 @@ public abstract class BaseAdRequestTask<S extends BaseResponse> extends RequestT
 
         String[] split = adUnit.split(":");
         if (split.length == 2) {
-            String key = split[1];
+            String key = adUnit;
+            String bundle = context.getPackageName();
 
-            map.put("bundle", context.getPackageName());
-            map.put("ad_unit", adUnit);
+            map.put("bundle", bundle);
             map.put("os", "android");
+            map.put("ad_unit", split[0]);
+
             String sign = null;
             String data = GetParamsHelper.encodeGetParams(map);
             try {
-//                sign = HmacHelper.encode(key, "bundle=com.milkyfox.app&ad_unit=interstitial_3402&os=android");
                 sign = HmacHelper.encode(key, data);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+
             map.put("sign", sign);
-            map.put("ad_unit", split[0]);
 
 //            map.put("sign", "88631b284b978c9bb82733b17607444d4da16e7bd1c13e80282eabcfc12ab5f7");
         } else {

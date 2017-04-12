@@ -33,6 +33,6 @@ public class InterstitialRequestTask extends BaseAdRequestTask<LoadInterstitialS
 
     @Override
     public String getUrlPath() {
-        return ServerConstants.SERVER_URL + String.format(Locale.US, "/api/v%d/interstitial", ServerConstants.API_VERSION);
+        return ServerConstants.SERVER_URL + String.format(Locale.US, "/v%d/interstitial", ServerConstants.API_VERSION);
     }
 }
