@@ -19,9 +19,9 @@ import org.json.JSONException;
 
 import java.util.Locale;
 
-public class InterstitialRequestTaskBase extends BaseAdRequestTask<LoadInterstitialSuccessResponse> {
+public class InterstitialRequestTask extends BaseAdRequestTask<LoadInterstitialSuccessResponse> {
 
-    public InterstitialRequestTaskBase(RequestManager asyncManager, int requestId, LoadAdData loadAdData, IRequestListener requestListener) {
+    public InterstitialRequestTask(RequestManager asyncManager, int requestId, LoadAdData loadAdData, IRequestListener requestListener) {
         super(asyncManager, loadAdData, requestId, requestListener);
     }
 

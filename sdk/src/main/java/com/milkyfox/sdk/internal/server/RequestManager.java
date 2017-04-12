@@ -14,7 +14,7 @@ import android.os.Message;
 
 import com.milkyfox.sdk.internal.server.listeners.IRequestListener;
 import com.milkyfox.sdk.internal.server.request.IRequestTask;
-import com.milkyfox.sdk.internal.server.request.impl.InterstitialRequestTaskBase;
+import com.milkyfox.sdk.internal.server.request.impl.InterstitialRequestTask;
 import com.milkyfox.sdk.internal.server.request.impl.data.LoadAdData;
 
 import java.lang.ref.WeakReference;
@@ -85,7 +85,7 @@ public class RequestManager {
             mId++;
         }
 
-        IRequestTask requestTask = new InterstitialRequestTaskBase(this, requestId, loadAdData, requestListener);
+        IRequestTask requestTask = new InterstitialRequestTask(this, requestId, loadAdData, requestListener);
         mRequestThreadPool.execute(requestTask.getThread());
         return requestTask;
     }

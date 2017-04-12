@@ -13,6 +13,7 @@ import android.os.Build;
 import com.milkyfox.sdk.internal.server.RequestManager;
 import com.milkyfox.sdk.internal.server.listeners.IRequestListener;
 import com.milkyfox.sdk.internal.server.response.BaseResponse;
+import com.milkyfox.sdk.internal.utils.GetParamsHelper;
 import com.milkyfox.sdk.internal.utils.MilkyFoxLog;
 
 import org.json.JSONException;
@@ -24,6 +25,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.zip.GZIPInputStream;
 
 public abstract class RequestTask<S extends BaseResponse, D> extends BaseRequestTask<D> {
@@ -37,7 +39,7 @@ public abstract class RequestTask<S extends BaseResponse, D> extends BaseRequest
 
     public abstract String getUrlPath();
 
-    public abstract Map<String, String> getParams();
+    public abstract TreeMap<String, String> getParams();
 
     public RequestMethods getRequestMethod() {
         return RequestMethods.GET;
@@ -50,30 +52,25 @@ public abstract class RequestTask<S extends BaseResponse, D> extends BaseRequest
         }
         String response = "";
         URL url;
-        StringBuilder urlStringBuilder = new StringBuilder(getUrlPath());
-
-        Map<String, String> getParams = getParams();
-        if (getParams != null && getParams.size() > 0) {
-            urlStringBuilder.append("?");
-            int i = 0;
-            for (String key : getParams.keySet()) {
-                if (i != 0) {
-                    urlStringBuilder.append("&");
-                    urlStringBuilder.append(key);
-                    urlStringBuilder.append("=");
-                    urlStringBuilder.append(getParams.get(key));
-                }
-                i++;
-            }
-        }
-
-        String urlString = urlStringBuilder.toString();
 
         int statusCode = 0;
 
         String logString = mRequestId + ": ";
         HttpURLConnection connection = null;
         try {
+
+            //get params
+            StringBuilder urlStringBuilder = new StringBuilder(getUrlPath());
+
+            TreeMap<String, String> getParams = getParams();
+            if (getParams != null && getParams.size() > 0) {
+                urlStringBuilder.append("?");
+                urlStringBuilder.append(GetParamsHelper.encodeGetParams(getParams));
+            }
+
+            String urlString = urlStringBuilder.toString();
+            //
+
             url = new URL(urlString);
             connection = (HttpURLConnection) url.openConnection();
             connection.setConnectTimeout(TIMEOUT);
