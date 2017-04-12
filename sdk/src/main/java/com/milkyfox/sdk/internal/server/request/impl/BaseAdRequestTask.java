@@ -51,6 +51,7 @@ public abstract class BaseAdRequestTask<S extends BaseResponse> extends RequestT
             String sign = null;
             String data = GetParamsHelper.encodeGetParams(map);
             try {
+//                sign = HmacHelper.encode(key, "bundle=com.milkyfox.app&ad_unit=interstitial_3402&os=android");
                 sign = HmacHelper.encode(key, data);
             } catch (Exception e) {
                 e.printStackTrace();
