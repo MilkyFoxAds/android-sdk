@@ -21,7 +21,9 @@ public abstract class MilkyFoxBaseAd {
 
     public MilkyFoxBaseAd(Activity activity, String adUnit) {
         mActivity = activity;
-        Assert.assertNotNull(mActivity);
+        if (activity == null) {
+            MilkyFoxLog.log("context is null!", true);
+        }
         this.mAdUnit = adUnit;
     }
 

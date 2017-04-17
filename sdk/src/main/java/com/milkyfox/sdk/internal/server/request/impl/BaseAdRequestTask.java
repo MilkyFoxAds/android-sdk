@@ -57,11 +57,7 @@ public abstract class BaseAdRequestTask<S extends BaseResponse> extends RequestT
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
             map.put("sign", sign);
-
-//            map.put("sign", "88631b284b978c9bb82733b17607444d4da16e7bd1c13e80282eabcfc12ab5f7");
         } else {
             MilkyFoxLog.log("invalid ad_unit", true);
         }
