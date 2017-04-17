@@ -19,6 +19,8 @@ import org.json.JSONObject;
 
 public class LoadInterstitialSuccessResponse extends BaseLoadAdSuccessResponse {
 
+    private enum AdType {admob, facebook}
+
     public LoadInterstitialSuccessResponse(String responseString, int requestId, LoadAdData loadAdData) {
         super(responseString, requestId, loadAdData);
     }
@@ -56,5 +58,4 @@ public class LoadInterstitialSuccessResponse extends BaseLoadAdSuccessResponse {
         logResult("Interstitial");
     }
 
-    private enum AdType {admob, facebook}
 }

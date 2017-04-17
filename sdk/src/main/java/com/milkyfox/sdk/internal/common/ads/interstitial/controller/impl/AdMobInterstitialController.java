@@ -18,9 +18,11 @@ import com.milkyfox.sdk.internal.common.ads.interstitial.controller.BaseIntersti
 import com.milkyfox.sdk.internal.common.ads.interstitial.controller.IInterstitialControllerListener;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.interstitial.AdMobInterstitialAdData;
 
+import java.util.Locale;
+
 public class AdMobInterstitialController extends BaseInterstitialController<AdMobInterstitialAdData> {
 
-    InterstitialAd mInterstitialAd;
+    private InterstitialAd mInterstitialAd;
 
     public AdMobInterstitialController(AdMobInterstitialAdData mData, IInterstitialControllerListener listener) {
         super(mData, listener);
@@ -42,7 +44,7 @@ public class AdMobInterstitialController extends BaseInterstitialController<AdMo
 
             @Override
             public void onAdFailedToLoad(int errorCode) {
-                notifyFailed(String.format("error code %d", errorCode));
+                notifyFailed(String.format(Locale.US, "error code %d", errorCode));
             }
 
             @Override
