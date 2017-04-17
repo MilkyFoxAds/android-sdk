@@ -12,8 +12,6 @@ import android.app.Activity;
 
 import com.milkyfox.sdk.internal.utils.MilkyFoxLog;
 
-import junit.framework.Assert;
-
 public abstract class MilkyFoxBaseAd {
     protected Activity mActivity;
     protected String mAdUnit;
