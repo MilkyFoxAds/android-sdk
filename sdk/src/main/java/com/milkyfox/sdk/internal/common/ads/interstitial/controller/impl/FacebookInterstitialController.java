@@ -10,7 +10,6 @@ package com.milkyfox.sdk.internal.common.ads.interstitial.controller.impl;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;

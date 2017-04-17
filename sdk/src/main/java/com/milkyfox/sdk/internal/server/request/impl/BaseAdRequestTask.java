@@ -19,8 +19,6 @@ import com.milkyfox.sdk.internal.utils.GetParamsHelper;
 import com.milkyfox.sdk.internal.utils.HmacHelper;
 import com.milkyfox.sdk.internal.utils.MilkyFoxLog;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.TreeMap;
 
 public abstract class BaseAdRequestTask<S extends BaseResponse> extends RequestTask<S, LoadAdData> {
