@@ -11,6 +11,7 @@ package com.milkyfox.sdk.internal.server.response.impl;
 import com.milkyfox.sdk.internal.server.request.impl.data.LoadAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.BaseAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.interstitial.AdMobInterstitialAdData;
+import com.milkyfox.sdk.internal.server.request.impl.data.ad.interstitial.AppLovinInterstitialAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.interstitial.FacebookInterstitialAdData;
 
 import org.json.JSONArray;
@@ -19,7 +20,7 @@ import org.json.JSONObject;
 
 public class LoadInterstitialSuccessResponse extends BaseLoadAdSuccessResponse {
 
-    private enum AdType {admob, facebook}
+    private enum AdType {admob, facebook, applovin}
 
     public LoadInterstitialSuccessResponse(String responseString, int requestId, LoadAdData loadAdData) {
         super(responseString, requestId, loadAdData);
@@ -44,6 +45,10 @@ public class LoadInterstitialSuccessResponse extends BaseLoadAdSuccessResponse {
                         }
                         case facebook: {
                             data = new FacebookInterstitialAdData();
+                            break;
+                        }
+                        case applovin: {
+                            data = new AppLovinInterstitialAdData();
                             break;
                         }
                     }
