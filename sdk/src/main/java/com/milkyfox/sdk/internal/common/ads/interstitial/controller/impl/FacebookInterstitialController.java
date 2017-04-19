@@ -29,6 +29,10 @@ public class FacebookInterstitialController extends BaseInterstitialController<F
 
     @Override
     public void preload(Activity activity) {
+        if (!isActivityImplemented(activity, "com.facebook.ads.AudienceNetworkActivity")) {
+            return;
+        }
+
         mInterstitialAd = new InterstitialAd(activity, mData.mAdUnit);
         mInterstitialAd.setAdListener(new InterstitialAdListener() {
             @Override
