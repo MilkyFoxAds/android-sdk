@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.milkyfox.app.interstitial.InterstitialActivity;
+import com.milkyfox.app.interstitial.test.InterstitialActivityTest;
 import com.milkyfox.app.recycler.MenuAdapter;
 import com.milkyfox.app.recycler.MenuElement;
 
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<MenuElement> menuElements = new LinkedList<>();
         menuElements.add(new MenuElement(getString(R.string.interstitial), InterstitialActivity.class));
+        menuElements.add(new MenuElement(getString(R.string.interstitial_test), InterstitialActivityTest.class));
 
         mMenuAdapter = new MenuAdapter(this, menuElements);
         mRecyclerView.setAdapter(mMenuAdapter);

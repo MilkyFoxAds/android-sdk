@@ -10,6 +10,7 @@
     <string name="app_name">MilkyFox</string>
 
     <string name="interstitial">Interstitial</string>
+    <string name="interstitial_test">Interstitial test</string>
 
     <string name="load">load</string>
     <string name="show">show</string>

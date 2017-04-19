@@ -35,6 +35,12 @@
             android:label="@string/interstitial"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".interstitial.test.InterstitialActivityTest"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/interstitial_test"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>
