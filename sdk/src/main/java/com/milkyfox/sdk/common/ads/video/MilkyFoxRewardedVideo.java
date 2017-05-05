@@ -10,26 +10,26 @@ package com.milkyfox.sdk.common.ads.video;
 
 import android.app.Activity;
 
-public class FlyMobRewardedVideo {
+public class MilkyFoxRewardedVideo {
 
     public static void initialize(Activity activity, String adUnit) {
-        FlyMobRewardedVideoAd.getInstance(activity, adUnit);
+        MilkyFoxRewardedVideoAd.getInstance(activity, adUnit);
     }
 
     public static void setListener(IMilkyFoxRewardedVideoListener listener) {
-        FlyMobRewardedVideoAd.getInstance().mListeners.clear();
+        MilkyFoxRewardedVideoAd.getInstance().mListeners.clear();
         if (listener != null) {
-            FlyMobRewardedVideoAd.getInstance().addListener(listener);
+            MilkyFoxRewardedVideoAd.getInstance().addListener(listener);
         }
     }
 
     public static boolean isLoaded() {
-        FlyMobRewardedVideoAd flyMobRewardedVideoAd = FlyMobRewardedVideoAd.getInstance();
-        return flyMobRewardedVideoAd != null && flyMobRewardedVideoAd.isLoaded();
+        MilkyFoxRewardedVideoAd milkyFoxRewardedVideoAd = MilkyFoxRewardedVideoAd.getInstance();
+        return milkyFoxRewardedVideoAd != null && milkyFoxRewardedVideoAd.isLoaded();
     }
 
     public static void show() {
-        FlyMobRewardedVideoAd.getInstance().show();
+        MilkyFoxRewardedVideoAd.getInstance().show();
     }
 
 

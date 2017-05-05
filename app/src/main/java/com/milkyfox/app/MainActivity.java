@@ -18,6 +18,7 @@ import com.milkyfox.app.interstitial.InterstitialActivity;
 import com.milkyfox.app.interstitial.test.InterstitialActivityTest;
 import com.milkyfox.app.recycler.MenuAdapter;
 import com.milkyfox.app.recycler.MenuElement;
+import com.milkyfox.app.rewarded_video.RewardedVideoActivity;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         List<MenuElement> menuElements = new LinkedList<>();
         menuElements.add(new MenuElement(getString(R.string.interstitial), InterstitialActivity.class));
         menuElements.add(new MenuElement(getString(R.string.interstitial_test), InterstitialActivityTest.class));
+        menuElements.add(new MenuElement(getString(R.string.rewarded_video), RewardedVideoActivity.class));
 
         mMenuAdapter = new MenuAdapter(this, menuElements);
         mRecyclerView.setAdapter(mMenuAdapter);

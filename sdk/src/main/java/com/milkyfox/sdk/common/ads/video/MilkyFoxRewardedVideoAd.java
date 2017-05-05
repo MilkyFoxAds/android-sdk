@@ -20,7 +20,6 @@ import com.milkyfox.sdk.internal.server.RequestManager;
 import com.milkyfox.sdk.internal.server.listeners.BaseRequestListener;
 import com.milkyfox.sdk.internal.server.request.impl.data.LoadAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.BaseAdData;
-import com.milkyfox.sdk.internal.server.response.BaseResponse;
 import com.milkyfox.sdk.internal.server.response.impl.ErrorResponse;
 import com.milkyfox.sdk.internal.server.response.impl.LoadRewardedVideoSuccessResponse;
 import com.milkyfox.sdk.internal.utils.MilkyFoxLog;
@@ -35,8 +34,8 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-class FlyMobRewardedVideoAd extends MilkyFoxBaseAd {
-    private static FlyMobRewardedVideoAd instance;
+class MilkyFoxRewardedVideoAd extends MilkyFoxBaseAd {
+    private static MilkyFoxRewardedVideoAd instance;
 
     private LoadRewardedVideoSuccessResponse mResponse;
 
@@ -53,7 +52,7 @@ class FlyMobRewardedVideoAd extends MilkyFoxBaseAd {
     private static final Boolean syncList = false;
     private List<BaseRewardedVideoController> mRewardedVideoControllerList = new ArrayList<BaseRewardedVideoController>();
 
-    private FlyMobRewardedVideoAd(Activity activity, String adUnit) {
+    private MilkyFoxRewardedVideoAd(Activity activity, String adUnit) {
         super(activity, adUnit);
         runTimer();
         AppLifecycleHelper.addListener(activity, new IAppLifeCycleListener() {
@@ -69,14 +68,14 @@ class FlyMobRewardedVideoAd extends MilkyFoxBaseAd {
         });
     }
 
-    public static synchronized FlyMobRewardedVideoAd getInstance(Activity activity, String adUnit) {
+    public static synchronized MilkyFoxRewardedVideoAd getInstance(Activity activity, String adUnit) {
         if (instance == null || !instance.mAdUnit.equals(adUnit)) {
-            instance = new FlyMobRewardedVideoAd(activity, adUnit);
+            instance = new MilkyFoxRewardedVideoAd(activity, adUnit);
         }
         return instance;
     }
 
-    public static synchronized FlyMobRewardedVideoAd getInstance() {
+    public static synchronized MilkyFoxRewardedVideoAd getInstance() {
         return instance;
     }
 

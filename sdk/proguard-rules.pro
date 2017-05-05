@@ -1,4 +1,4 @@
-# FlyMob
+# MilkyFox
 -keep public class com.milkyfox.sdk.common.** { public *; }
 -keepattributes EnclosingMethod
 
