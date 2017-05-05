@@ -25,7 +25,12 @@ public abstract class BaseController<T extends BaseAdData> {
 
     public abstract void onDestroy();
 
-    public abstract String getName();
+    public final String getName(){
+        if(mData!=null) {
+            return mData.getName();
+        }
+        return "null";
+    }
 
     public final String getDisplay() {
         return getName() + " " + mData.getContentsRepresentation();

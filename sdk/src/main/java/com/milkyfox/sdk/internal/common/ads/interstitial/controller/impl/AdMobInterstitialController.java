@@ -75,11 +75,6 @@ public class AdMobInterstitialController extends BaseInterstitialController<AdMo
     }
 
     @Override
-    public String getName() {
-        return "admob";
-    }
-
-    @Override
     public void onDestroy() {
     }
 }

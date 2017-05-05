@@ -66,6 +66,19 @@ dependencies {
     //Facebook
     compile 'com.facebook.android:audience-network-sdk:4.21.1'
 
-    //AppLovin
-    compile project(':AppLovin')
+
+    //Adcolony
+    compile fileTree(dir: 'adcolonyLibs', include: ['*.jar'])
+
+    //Applovin
+    compile fileTree(dir: 'applovinLibs', include: ['*.jar'])
+
+    //UnityAds
+    compile fileTree(dir: 'unityLibs', include: ['*.jar'])
+
+    //Vungle
+    compile fileTree(dir: 'vungleLibs', include: ['*.jar'])
+//
+//    //AppLovin
+//    compile project(':AppLovin')
 }

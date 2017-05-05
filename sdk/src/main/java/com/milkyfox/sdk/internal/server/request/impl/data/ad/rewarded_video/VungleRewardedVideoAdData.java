@@ -6,14 +6,17 @@
  * **********************
  */
 
-package com.milkyfox.sdk.internal.server.request.impl.data.ad.interstitial;
+package com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video;
 
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.SimpleAdData;
 
-public class AdMobInterstitialAdData extends SimpleAdData {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class VungleRewardedVideoAdData extends SimpleAdData {
 
     @Override
     public String getName() {
-        return "AdMob";
+        return "Vungle";
     }
 }

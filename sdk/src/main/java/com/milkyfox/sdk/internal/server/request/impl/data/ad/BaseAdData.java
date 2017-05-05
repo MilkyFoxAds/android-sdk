@@ -12,10 +12,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public abstract class BaseAdData {
-    public BaseAdData() {
-
-    }
-
     public String getName() {
         return "base";
     }

@@ -73,11 +73,6 @@ public class FacebookInterstitialController extends BaseInterstitialController<F
     }
 
     @Override
-    public String getName() {
-        return "facebook";
-    }
-
-    @Override
     public void onDestroy() {
         if (mInterstitialAd != null) {
             mInterstitialAd.destroy();

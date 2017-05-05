@@ -113,11 +113,6 @@ public class AppLovinInterstitialController extends BaseInterstitialController<A
     }
 
     @Override
-    public String getName() {
-        return "applovin";
-    }
-
-    @Override
     public void onDestroy() {
     }
 }

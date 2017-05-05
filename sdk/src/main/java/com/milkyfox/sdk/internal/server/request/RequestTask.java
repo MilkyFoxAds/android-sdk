@@ -104,6 +104,7 @@ public abstract class RequestTask<S extends BaseResponse, D> extends BaseRequest
 
             response = streamToString(inputStream);
 
+//            response = "{\"data\":[{\"type\":\"facebook\",\"settings\":{\"ad_unit\":\"458787734469285_458789074469151\"}},{\"type\":\"facebook\",\"settings\":{\"ad_unit\":\"458787734469285_458789234469135\"}},{\"type\":\"facebook\",\"settings\":{\"ad_unit\":\"458787734469285_458789297802462\"}}]}";
             if (error) {
                 error(response, statusCode);
                 return;

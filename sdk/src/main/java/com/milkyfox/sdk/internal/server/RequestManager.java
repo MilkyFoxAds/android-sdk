@@ -8,6 +8,7 @@
 
 package com.milkyfox.sdk.internal.server;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +16,7 @@ import android.os.Message;
 import com.milkyfox.sdk.internal.server.listeners.IRequestListener;
 import com.milkyfox.sdk.internal.server.request.IRequestTask;
 import com.milkyfox.sdk.internal.server.request.impl.InterstitialRequestTask;
+import com.milkyfox.sdk.internal.server.request.impl.RewardedVideoRequestTask;
 import com.milkyfox.sdk.internal.server.request.impl.data.LoadAdData;
 
 import java.lang.ref.WeakReference;
@@ -29,6 +31,7 @@ public class RequestManager {
     private static final int KEEP_ALIVE_TIME = 1;
     // Sets the Time Unit to seconds
     private static final TimeUnit KEEP_ALIVE_TIME_UNIT;
+    @SuppressLint("StaticFieldLeak")
     private static volatile RequestManager instance;
     private static int NUMBER_OF_CORES =
             Runtime.getRuntime().availableProcessors();
@@ -42,6 +45,7 @@ public class RequestManager {
     private final BlockingQueue<Runnable> mRequestBlockingQueue;
     private final ThreadPoolExecutor mRequestThreadPool;
     private volatile Integer mId = 0;
+    private final Boolean syncId = false;
     private Handler mHandler;
     private Context mContext;
 
@@ -78,16 +82,26 @@ public class RequestManager {
     }
 
     public IRequestTask loadInterstitial(LoadAdData loadAdData, IRequestListener requestListener) {
-
-        int requestId;
-        synchronized (mId) {
-            requestId = mId;
-            mId++;
-        }
-
+        int requestId = getRequestId();
         IRequestTask requestTask = new InterstitialRequestTask(this, requestId, loadAdData, requestListener);
         mRequestThreadPool.execute(requestTask.getThread());
         return requestTask;
+    }
+
+    public IRequestTask loadRewardedVideo(LoadAdData loadAdData, IRequestListener requestListener) {
+        int requestId = getRequestId();
+        IRequestTask requestTask = new RewardedVideoRequestTask(this, requestId, loadAdData, requestListener);
+        mRequestThreadPool.execute(requestTask.getThread());
+        return requestTask;
+    }
+
+    private int getRequestId() {
+        int requestId;
+        synchronized (syncId) {
+            requestId = mId;
+            mId++;
+        }
+        return requestId;
     }
 
     public void handleState(IRequestTask requestTask) {
@@ -105,7 +119,7 @@ public class RequestManager {
     private static class InnerHandler extends Handler {
         private final WeakReference<RequestManager> weakTarget;
 
-        public InnerHandler(RequestManager target) {
+        InnerHandler(RequestManager target) {
             weakTarget = new WeakReference<RequestManager>(target);
         }
 

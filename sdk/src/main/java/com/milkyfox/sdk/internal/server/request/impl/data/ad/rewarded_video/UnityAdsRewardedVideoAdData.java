@@ -6,29 +6,29 @@
  * **********************
  */
 
-package com.milkyfox.sdk.internal.server.request.impl.data.ad.interstitial;
+package com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video;
 
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.SimpleAdData;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class AppLovinInterstitialAdData extends SimpleAdData {
+public class UnityAdsRewardedVideoAdData extends SimpleAdData {
 
-    public String mPlacement;
+    public String mGameId;
 
     @Override
     public void parse(JSONObject jsonObject) throws JSONException {
         super.parse(jsonObject);
         JSONObject jsonObjectSettings = jsonObject.getJSONObject("settings");
-        mPlacement = jsonObjectSettings.optString("placement", "");
+        mGameId = jsonObjectSettings.getString("game_id");
     }
 
     @Override
     public JSONObject getContentsRepresentation() {
         JSONObject jsonObject = super.getContentsRepresentation();
         try {
-            jsonObject.put("placement", mPlacement);
+            jsonObject.put("game_id", mGameId);
         } catch (Throwable e) {
             e.printStackTrace();
         }
@@ -37,6 +37,6 @@ public class AppLovinInterstitialAdData extends SimpleAdData {
 
     @Override
     public String getName() {
-        return "AppLovin";
+        return "UnityAds";
     }
 }
