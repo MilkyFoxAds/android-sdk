@@ -104,10 +104,10 @@ public abstract class RequestTask<S extends BaseResponse, D> extends BaseRequest
 
             response = streamToString(inputStream);
 
-//            response = "{\"data\":[{\"type\":\"facebook\",\"settings\":{\"ad_unit\":\"458787734469285_458789074469151\"}},{\"type\":\"facebook\",\"settings\":{\"ad_unit\":\"458787734469285_458789234469135\"}},{\"type\":\"facebook\",\"settings\":{\"ad_unit\":\"458787734469285_458789297802462\"}}]}";
-            response = "{\"data\":[{\"type\":\"applovin\",\"settings\":{\"ad_unit\":\"1vN-eyx-MkVJkyK2dWJahuWBt8ACvSywLKv-GrzdTSxGPFJ2nccTU7eLGqT9GV4bq-a5pXiM_ddOuxQeX261Am\"}},{\"type\":\"facebook\",\"settings\":{\"ad_unit\":\"458787734469285_458789234469135\"}},{\"type\":\"facebook\",\"settings\":{\"ad_unit\":\"458787734469285_458789297802462\"}}]}";
-            error = false;
-            //
+////            response = "{\"data\":[{\"type\":\"facebook\",\"settings\":{\"ad_unit\":\"458787734469285_458789074469151\"}},{\"type\":\"facebook\",\"settings\":{\"ad_unit\":\"458787734469285_458789234469135\"}},{\"type\":\"facebook\",\"settings\":{\"ad_unit\":\"458787734469285_458789297802462\"}}]}";
+//            response = "{\"data\":[{\"type\":\"admob\",\"settings\":{\"ad_unit\":\"ca-app-pub-6061103081157952/9155170223\"}},{\"type\":\"facebook\",\"settings\":{\"ad_unit\":\"458787734469285_458789234469135\"}},{\"type\":\"facebook\",\"settings\":{\"ad_unit\":\"458787734469285_458789297802462\"}}]}";
+//            error = false;
+//            //
 
             if (error) {
                 error(response, statusCode);

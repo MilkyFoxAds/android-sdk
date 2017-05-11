@@ -10,6 +10,7 @@ package com.milkyfox.sdk.internal.server.response.impl;
 
 import com.milkyfox.sdk.internal.server.request.impl.data.LoadAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.BaseAdData;
+import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.AdMobRewardedVideoAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.AdcolonyRewardedVideoAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.AppLovinRewardedVideoAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.UnityAdsRewardedVideoAdData;
@@ -21,7 +22,7 @@ import org.json.JSONObject;
 
 public class LoadRewardedVideoSuccessResponse extends BaseLoadAdSuccessResponse {
 
-    private enum AdType {applovin, unityads, adcolony, vungle}
+    private enum AdType {admob, applovin, unityads, adcolony, vungle}
 
     public LoadRewardedVideoSuccessResponse(String responseString, int requestId, LoadAdData loadAdData) {
         super(responseString, requestId, loadAdData);
@@ -40,6 +41,10 @@ public class LoadRewardedVideoSuccessResponse extends BaseLoadAdSuccessResponse 
                     AdType adType = AdType.valueOf(jsonObjectAd.getString("type"));
                     BaseAdData data = null;
                     switch (adType) {
+                        case admob: {
+                            data = new AdMobRewardedVideoAdData();
+                            break;
+                        }
                         case applovin: {
                             data = new AppLovinRewardedVideoAdData();
                             break;

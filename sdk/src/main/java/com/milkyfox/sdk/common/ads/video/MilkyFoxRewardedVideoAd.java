@@ -13,9 +13,9 @@ import android.os.Handler;
 
 import com.milkyfox.sdk.common.ads.MilkyFoxAdStatus;
 import com.milkyfox.sdk.common.ads.MilkyFoxBaseAd;
-import com.milkyfox.sdk.internal.common.ads.interstitial.video.controller.BaseRewardedVideoController;
-import com.milkyfox.sdk.internal.common.ads.interstitial.video.controller.IRewardedVideoControllerListener;
-import com.milkyfox.sdk.internal.common.ads.interstitial.video.controller.RewardedVideoControllerFactory;
+import com.milkyfox.sdk.internal.common.ads.video.controller.BaseRewardedVideoController;
+import com.milkyfox.sdk.internal.common.ads.video.controller.IRewardedVideoControllerListener;
+import com.milkyfox.sdk.internal.common.ads.video.controller.RewardedVideoControllerFactory;
 import com.milkyfox.sdk.internal.server.RequestManager;
 import com.milkyfox.sdk.internal.server.listeners.BaseRequestListener;
 import com.milkyfox.sdk.internal.server.request.impl.data.LoadAdData;

@@ -17,6 +17,8 @@ ext {
 }
 
 android {
+    defaultPublishConfig "jarRelease"
+    publishNonDefault true
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
 
@@ -49,36 +51,54 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        jar {
+
+        }
+        aar {
+
+        }
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.2.0'
 
     //Admob
     compile 'com.google.firebase:firebase-ads:10.2.1'
     compile 'com.google.android.gms:play-services-ads:10.2.1'
 
+    //jar
     //Facebook
-    compile 'com.facebook.android:audience-network-sdk:4.21.1'
-
-
-    //Adcolony
-    compile fileTree(dir: 'adcolonyLibs', include: ['*.jar'])
-
-    //Applovin
-    compile fileTree(dir: 'applovinLibs', include: ['*.jar'])
+    jarCompile fileTree(dir: 'facebookLibs', include: ['*.jar'])
 
     //UnityAds
-    compile fileTree(dir: 'unityLibs', include: ['*.jar'])
+    jarCompile fileTree(dir: 'unityLibs', include: ['*.jar'])
+
+    //Applovin
+    jarCompile fileTree(dir: 'applovinLibs', include: ['*.jar'])
+
+    //Adcolony
+    jarCompile fileTree(dir: 'adcolonyLibs', include: ['*.jar'])
 
     //Vungle
-    compile fileTree(dir: 'vungleLibs', include: ['*.jar'])
-//
-//    //AppLovin
-//    compile project(':AppLovin')
+    jarCompile fileTree(dir: 'vungleLibs', include: ['*.jar'])
+
+    //aar
+    //Facebook
+    aarCompile 'com.facebook.android:audience-network-sdk:4.21.1'
+
+    //UnityAds
+    aarCompile project(':UnityAds')
+
+    //AppLovin
+    aarCompile project(':AppLovin')
+
+    //Adcolony
+    aarCompile project(':AdColony')
+
+    //Vungle
+    aarCompile project(':Vungle')
 }

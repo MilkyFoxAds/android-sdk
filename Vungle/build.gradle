@@ -1,0 +1,12 @@
+/*
+ * **********************
+ * Copyright (c) 2017.
+ * MilkyFox
+ * http://milkyfox.com
+ * **********************
+ */
+
+configurations.maybeCreate("default")
+artifacts.add("default", file('vungle-publisher-adaptive-id-4.0.3.jar'))
+artifacts.add("default", file('dagger-2.7.jar'))
+artifacts.add("default", file('javax.inject-1.jar'))

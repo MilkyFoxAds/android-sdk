@@ -1,2 +1,2 @@
 configurations.maybeCreate("default")
-artifacts.add("default", file('applovin-sdk-7.0.2.jar'))
+artifacts.add("default", file('applovin-sdk-7.0.3.jar'))

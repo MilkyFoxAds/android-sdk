@@ -16,9 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.milkyfox.app.R;
-import com.milkyfox.app.utiles.ToastHelper;
-import com.milkyfox.sdk.common.ads.interstitial.IMilkyFoxInterstitialListener;
-import com.milkyfox.sdk.common.ads.interstitial.MilkyFoxInterstitial;
 import com.milkyfox.sdk.common.ads.video.IMilkyFoxRewardedVideoListener;
 import com.milkyfox.sdk.common.ads.video.MilkyFoxRewardedVideo;
 
@@ -30,14 +27,12 @@ public class RewardedVideoActivity extends AppCompatActivity {
     TextView mInit;
     View mShow;
 
-    String currentAdUnit;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rewarded_video);
         mEditText = (EditText) findViewById(R.id.edit_text);
-        mInit = (TextView)findViewById(R.id.load);
+        mInit = (TextView) findViewById(R.id.load);
         mInit.setText(getString(R.string.init));
         mShow = findViewById(R.id.show);
 
@@ -75,6 +70,7 @@ public class RewardedVideoActivity extends AppCompatActivity {
     }
 
     private void init() {
+        mInit.setEnabled(false);
         String adUnit = String.valueOf(mEditText.getText());
         MilkyFoxRewardedVideo.initialize(this, adUnit);
         MilkyFoxRewardedVideo.setListener(new IMilkyFoxRewardedVideoListener() {
