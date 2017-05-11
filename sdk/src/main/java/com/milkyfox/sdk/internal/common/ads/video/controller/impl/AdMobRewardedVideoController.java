@@ -36,6 +36,9 @@ public class AdMobRewardedVideoController extends BaseRewardedVideoController<Ad
 
     @Override
     public void preload(Activity activity) {
+        if (!isActivityImplemented(activity, "com.google.android.gms.ads.AdActivity")) {
+            return;
+        }
 
         mAd = MobileAds.getRewardedVideoAdInstance(activity);
         mAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
