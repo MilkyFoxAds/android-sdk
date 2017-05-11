@@ -16,11 +16,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.milkyfox.app.R;
+import com.milkyfox.app.interstitial.InterstitialActivity;
+import com.milkyfox.app.utiles.ToastHelper;
 import com.milkyfox.sdk.common.ads.video.IMilkyFoxRewardedVideoListener;
 import com.milkyfox.sdk.common.ads.video.MilkyFoxRewardedVideo;
 
 public class RewardedVideoActivity extends AppCompatActivity {
-    public static final String AD_UNIT = "interstitial_3402:4203";
+    public static final String AD_UNIT = "video_3403:4203";
 
     Toolbar mToolBar;
     EditText mEditText;
@@ -77,26 +79,31 @@ public class RewardedVideoActivity extends AppCompatActivity {
             @Override
             public void load() {
                 updateUI();
+                ToastHelper.showToast(RewardedVideoActivity.this, "load");
             }
 
             @Override
             public void show() {
                 updateUI();
+                ToastHelper.showToast(RewardedVideoActivity.this, "show");
             }
 
             @Override
             public void close() {
                 updateUI();
+                ToastHelper.showToast(RewardedVideoActivity.this, "close");
             }
 
             @Override
             public void start() {
                 updateUI();
+                ToastHelper.showToast(RewardedVideoActivity.this, "start");
             }
 
             @Override
             public void complete() {
                 updateUI();
+                ToastHelper.showToast(RewardedVideoActivity.this, "complete");
             }
         });
     }
