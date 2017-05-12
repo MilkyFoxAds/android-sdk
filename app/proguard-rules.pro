@@ -41,11 +41,11 @@
 }
 
 # Vungle
--keep class com.vungle.** { public *; }
+-dontwarn com.vungle.**
+-keep class com.vungle.** { *; }
 -keep class javax.inject.*
 -keepattributes *Annotation*, Signature
 -keep class dagger.*
--dontwarn com.vungle.**
 
 # Legacy
 -keep class org.apache.http.** { public *; }
