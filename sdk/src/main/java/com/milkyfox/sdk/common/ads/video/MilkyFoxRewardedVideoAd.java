@@ -218,34 +218,34 @@ class MilkyFoxRewardedVideoAd extends MilkyFoxBaseAd {
                 rewardedVideoController = RewardedVideoControllerFactory.getController(data, new IRewardedVideoControllerListener() {
 
                     @Override
-                    public void loaded(BaseRewardedVideoController controller) {
-                        MilkyFoxLog.log(String.format("loaded %s", controller.getDisplay()));
+                    public void load(BaseRewardedVideoController controller) {
+                        MilkyFoxLog.log(String.format("load %s", controller.getDisplay()));
                         notifyLoaded();
                     }
 
                     @Override
-                    public void shown(BaseRewardedVideoController controller) {
+                    public void show(BaseRewardedVideoController controller) {
                         notifyShown(controller);
                     }
 
                     @Override
-                    public void closed(BaseRewardedVideoController controller) {
+                    public void close(BaseRewardedVideoController controller) {
                         notifyClosed();
                     }
 
                     @Override
-                    public void started(BaseRewardedVideoController controller) {
+                    public void start(BaseRewardedVideoController controller) {
                         notifyStarted(controller);
                     }
 
                     @Override
-                    public void completed(BaseRewardedVideoController controller) {
+                    public void complete(BaseRewardedVideoController controller) {
                         notifyCompleted(controller);
                     }
 
                     @Override
-                    public void failed(BaseRewardedVideoController controller, String error) {
-                        MilkyFoxLog.log(String.format("preload failed: %s", error));
+                    public void fail(BaseRewardedVideoController controller, String error) {
+                        MilkyFoxLog.log(String.format("preload fail: %s", error));
                     }
                 });
                 if (rewardedVideoController != null) {

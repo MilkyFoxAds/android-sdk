@@ -9,15 +9,15 @@
 package com.milkyfox.sdk.internal.common.ads.video.controller;
 
 public interface IRewardedVideoControllerListener {
-    void loaded(BaseRewardedVideoController rewardedVideoController);
+    void load(BaseRewardedVideoController rewardedVideoController);
 
-    void failed(BaseRewardedVideoController rewardedVideoController, String error);
+    void fail(BaseRewardedVideoController rewardedVideoController, String error);
 
-    void shown(BaseRewardedVideoController rewardedVideoController);
+    void show(BaseRewardedVideoController rewardedVideoController);
 
-    void closed(BaseRewardedVideoController rewardedVideoController);
+    void close(BaseRewardedVideoController rewardedVideoController);
 
-    void started(BaseRewardedVideoController rewardedVideoController);
+    void start(BaseRewardedVideoController rewardedVideoController);
 
-    void completed(BaseRewardedVideoController rewardedVideoController);
+    void complete(BaseRewardedVideoController rewardedVideoController);
 }

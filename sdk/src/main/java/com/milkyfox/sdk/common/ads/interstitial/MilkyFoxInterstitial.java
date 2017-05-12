@@ -99,7 +99,7 @@ public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstiti
         }
         if (mStatus == MilkyFoxAdStatus.LOADING || mStatus == MilkyFoxAdStatus.LOADED) {
             if (mCurController != null && mActivity != null) {
-                MilkyFoxLog.log(String.format("loaded %s", mCurController.getDisplay()));
+                MilkyFoxLog.log(String.format("load %s", mCurController.getDisplay()));
             }
             mStatus = MilkyFoxAdStatus.LOADED;
             for (IMilkyFoxInterstitialListener listener : mListeners) {
@@ -205,7 +205,7 @@ public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstiti
                     public void fail(BaseInterstitialController controller, String error) {
                         if (controller == mCurController) {
                             handler.removeCallbacks(runnable);
-                            MilkyFoxLog.log(String.format("preload failed: %s", error));
+                            MilkyFoxLog.log(String.format("preload fail: %s", error));
                             tryToLoadNextAd();
                         }
                     }

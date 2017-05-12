@@ -63,7 +63,7 @@ public class AdcolonyRewardedVideoController extends BaseRewardedVideoController
         };
 
         mAdColonyInterstitialListener = new AdColonyInterstitialListener() {
-            /** Ad passed back in request filled callback, ad can now be shown */
+            /** Ad passed back in request filled callback, ad can now be show */
             @Override
             public void onRequestFilled(AdColonyInterstitial ad) {
                 mAd = ad;

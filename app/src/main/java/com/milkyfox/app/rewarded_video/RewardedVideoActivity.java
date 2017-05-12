@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.milkyfox.app.R;
-import com.milkyfox.app.interstitial.InterstitialActivity;
 import com.milkyfox.app.utiles.ToastHelper;
 import com.milkyfox.sdk.common.ads.video.IMilkyFoxRewardedVideoListener;
 import com.milkyfox.sdk.common.ads.video.MilkyFoxRewardedVideo;
@@ -62,7 +61,9 @@ public class RewardedVideoActivity extends AppCompatActivity {
     }
 
     private void updateUI() {
-        mShow.setEnabled(MilkyFoxRewardedVideo.isLoaded());
+        boolean loaded = MilkyFoxRewardedVideo.isLoaded();
+        mInit.setEnabled(!loaded);
+        mShow.setEnabled(loaded);
     }
 
     private void show() {

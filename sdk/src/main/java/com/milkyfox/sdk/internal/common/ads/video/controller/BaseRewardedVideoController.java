@@ -31,37 +31,37 @@ public abstract class BaseRewardedVideoController<T extends BaseAdData> extends 
 
     protected void notifyLoaded() {
         if (mListener != null) {
-            mListener.loaded(this);
+            mListener.load(this);
         }
     }
 
     protected final void notifyFailed(String error) {
         if (mListener != null) {
-            mListener.failed(this, error);
+            mListener.fail(this, error);
         }
     }
 
     protected void notifyShown() {
         if (mListener != null) {
-            mListener.shown(this);
+            mListener.show(this);
         }
     }
 
     protected void notifyClosed() {
         if (mListener != null) {
-            mListener.closed(this);
+            mListener.close(this);
         }
     }
 
     protected void notifyStarted() {
         if (mListener != null) {
-            mListener.started(this);
+            mListener.start(this);
         }
     }
 
     protected void notifyCompleted() {
         if (mListener != null) {
-            mListener.completed(this);
+            mListener.complete(this);
         }
     }
 }

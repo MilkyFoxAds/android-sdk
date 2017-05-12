@@ -47,6 +47,12 @@
             android:label="@string/interstitial_test"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".rewarded_video.test.RewardedVideoActivityTest"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/rewarded_video_test"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

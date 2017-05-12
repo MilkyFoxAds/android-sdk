@@ -62,7 +62,7 @@ public class AppLovinRewardedVideoController extends BaseRewardedVideoController
                 @SuppressLint("DefaultLocale")
                 @Override
                 public void failedToReceiveAd(int i) {
-                    notifyFailed(String.format("failed: %d", i));
+                    notifyFailed(String.format("fail: %d", i));
                 }
             });
         } else {
@@ -94,7 +94,7 @@ public class AppLovinRewardedVideoController extends BaseRewardedVideoController
 
                     @Override
                     public void validationRequestFailed(AppLovinAd appLovinAd, int i) {
-//                        notifyFailed(String.format("failed: %d", i));
+//                        notifyFailed(String.format("fail: %d", i));
                     }
 
                     @Override

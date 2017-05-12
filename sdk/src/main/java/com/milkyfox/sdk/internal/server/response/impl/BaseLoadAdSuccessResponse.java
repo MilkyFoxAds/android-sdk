@@ -36,7 +36,7 @@ public class BaseLoadAdSuccessResponse extends BaseSuccessResponse {
         try {
             if (MilkyFoxLog.isLogEnabled()) {
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("loaded ");
+                stringBuilder.append("load ");
                 stringBuilder.append(name);
                 stringBuilder.append(": ");
                 int i = 0;
