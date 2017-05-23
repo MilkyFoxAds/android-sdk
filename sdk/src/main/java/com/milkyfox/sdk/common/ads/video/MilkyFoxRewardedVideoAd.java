@@ -127,35 +127,32 @@ class MilkyFoxRewardedVideoAd extends MilkyFoxBaseAd {
     }
 
     public void show() {
-        if (mStatus == MilkyFoxAdStatus.IDLE) {
-            if (isLoaded()) {
-                try {
-                    boolean shown = false;
-                    synchronized (syncList) {
-                        for (BaseRewardedVideoController rewardedVideoController : mRewardedVideoControllerList) {
-                            if (rewardedVideoController.isLoaded()) {
-                                rewardedVideoController.show(mActivity);
-                                MilkyFoxLog.log(String.format("showing %s", rewardedVideoController.getDisplay()));
-                                shown = true;
-                                mStatus = MilkyFoxAdStatus.SHOWING;
-                                break;
-                            } else {
-                                rewardedVideoController.preload(mActivity);
-                            }
+        if (isLoaded()) {
+            try {
+                boolean shown = false;
+                synchronized (syncList) {
+                    for (BaseRewardedVideoController rewardedVideoController : mRewardedVideoControllerList) {
+                        if (rewardedVideoController.isLoaded()) {
+                            rewardedVideoController.show(mActivity);
+                            MilkyFoxLog.log(String.format("showing %s", rewardedVideoController.getDisplay()));
+                            shown = true;
+                            mStatus = MilkyFoxAdStatus.SHOWING;
+                            break;
+                        } else {
+                            rewardedVideoController.preload(mActivity);
                         }
                     }
-                    if (!shown) {
-                        notifyClosed();
-                    }
-                } catch (Throwable ex) {
-                    ex.printStackTrace();
-                    MilkyFoxLog.log(ex.getMessage(), true);
+                }
+                if (!shown) {
                     notifyClosed();
                 }
+            } catch (Throwable ex) {
+                ex.printStackTrace();
+                MilkyFoxLog.log(ex.getMessage(), true);
+                notifyClosed();
             }
-        } else {
-            logErrorStatus("show");
         }
+
     }
 
     private void notifyLoaded() {

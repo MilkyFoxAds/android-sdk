@@ -128,10 +128,8 @@ public class UnityAdsRewardedVideoController extends BaseRewardedVideoController
         if (!isActivityImplemented(activity, "com.unity3d.ads.adunit.AdUnitSoftwareActivity")) {
             return;
         }
-        if (unityAdsListener.mWeakActivity == null) {
-            unityAdsListener.setActivity(activity);
-            unityAdsListener.setController(this);
-        }
+        unityAdsListener.setActivity(activity);
+        unityAdsListener.setController(this);
         UnityAds.initialize(activity, mData.mGameId, unityAdsListener);
 
         if (UnityAds.isReady(mData.mAdUnit)) {
