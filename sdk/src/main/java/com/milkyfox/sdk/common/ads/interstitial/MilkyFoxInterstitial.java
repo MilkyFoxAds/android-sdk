@@ -30,18 +30,14 @@ import java.util.Set;
 
 
 public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstitialController, LoadInterstitialSuccessResponse> {
-    private Set<IMilkyFoxInterstitialListener> mListeners = new LinkedHashSet<IMilkyFoxInterstitialListener>();
+    private IMilkyFoxInterstitialListener mListener = null;
 
     public MilkyFoxInterstitial(Activity activity, String adUnit) {
         super(activity, adUnit);
     }
 
-    public void addListener(IMilkyFoxInterstitialListener listener) {
-        mListeners.add(listener);
-    }
-
-    public void removeListener(IMilkyFoxInterstitialListener listener) {
-        mListeners.remove(listener);
+    public void setListener(IMilkyFoxInterstitialListener listener) {
+        mListener = listener;
     }
 
     public void load() {
@@ -102,8 +98,8 @@ public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstiti
                 MilkyFoxLog.log(String.format("load %s", mCurController.getDisplay()));
             }
             mStatus = MilkyFoxAdStatus.LOADED;
-            for (IMilkyFoxInterstitialListener listener : mListeners) {
-                listener.load(this);
+            if(mListener!=null){
+                mListener.load(this);
             }
         }
     }
@@ -114,8 +110,8 @@ public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstiti
         }
         if (mStatus == MilkyFoxAdStatus.LOADING) {
             mStatus = MilkyFoxAdStatus.IDLE;
-            for (IMilkyFoxInterstitialListener listener : mListeners) {
-                listener.fail(this);
+            if(mListener!=null){
+                mListener.fail(this);
             }
         }
     }
@@ -126,8 +122,8 @@ public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstiti
         }
         if (mStatus == MilkyFoxAdStatus.LOADED) {
             mStatus = MilkyFoxAdStatus.SHOWING;
-            for (IMilkyFoxInterstitialListener listener : mListeners) {
-                listener.show(this);
+            if(mListener!=null){
+                mListener.show(this);
             }
         }
     }
@@ -137,8 +133,8 @@ public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstiti
             return;
         }
         if (mStatus == MilkyFoxAdStatus.SHOWING) {
-            for (IMilkyFoxInterstitialListener listener : mListeners) {
-                listener.click(this);
+            if(mListener!=null){
+                mListener.click(this);
             }
         }
     }
@@ -149,8 +145,8 @@ public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstiti
         }
         if (mStatus == MilkyFoxAdStatus.SHOWING || mStatus == MilkyFoxAdStatus.LOADED) {
             mStatus = MilkyFoxAdStatus.IDLE;
-            for (IMilkyFoxInterstitialListener listener : mListeners) {
-                listener.close(this);
+            if(mListener!=null){
+                mListener.close(this);
             }
         }
     }

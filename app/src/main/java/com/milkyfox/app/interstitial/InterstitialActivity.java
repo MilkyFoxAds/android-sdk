@@ -91,7 +91,7 @@ public class InterstitialActivity extends AppCompatActivity {
             destroyAd();
 
             mMilkyFoxInterstitial = new MilkyFoxInterstitial(this, AD_UNIT);
-            mMilkyFoxInterstitial.addListener(new IMilkyFoxInterstitialListener() {
+            mMilkyFoxInterstitial.setListener(new IMilkyFoxInterstitialListener() {
                 @Override
                 public void load(MilkyFoxInterstitial interstitial) {
                     ToastHelper.showToast(InterstitialActivity.this, "load");
