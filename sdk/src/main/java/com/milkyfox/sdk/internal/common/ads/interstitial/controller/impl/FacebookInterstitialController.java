@@ -63,6 +63,11 @@ public class FacebookInterstitialController extends BaseInterstitialController<F
             public void onAdClicked(Ad ad) {
                 notifyClicked();
             }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+
+            }
         });
         mInterstitialAd.loadAd();
     }

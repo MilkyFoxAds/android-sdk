@@ -88,7 +88,7 @@ dependencies {
 
     //aar
     //Facebook
-    jarCompile 'com.facebook.android:audience-network-sdk:4.21.1'
+    jarCompile 'com.facebook.android:audience-network-sdk:4.22.1'
 
     //UnityAds
     jarCompile project(':UnityAds')
