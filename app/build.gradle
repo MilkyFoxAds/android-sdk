@@ -12,7 +12,8 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.milkyfox.app"
+        applicationId "com.game.moofarmio"
+//        applicationId "com.milkyfox.app"
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 1

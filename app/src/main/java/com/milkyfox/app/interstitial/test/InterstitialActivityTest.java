@@ -30,7 +30,8 @@ import com.milkyfox.sdk.internal.server.response.impl.ErrorResponse;
 import com.milkyfox.sdk.internal.server.response.impl.LoadInterstitialSuccessResponse;
 
 public class InterstitialActivityTest extends AppCompatActivity {
-    public static final String AD_UNIT = "interstitial_3402:4203";
+//    public static final String AD_UNIT = "interstitial_3402:4203";
+    public static final String AD_UNIT = "interstitial_3405:4204";
 
     Toolbar mToolBar;
     EditText mEditText;

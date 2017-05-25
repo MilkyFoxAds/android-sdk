@@ -20,7 +20,8 @@ import com.milkyfox.sdk.common.ads.interstitial.IMilkyFoxInterstitialListener;
 import com.milkyfox.sdk.common.ads.interstitial.MilkyFoxInterstitial;
 
 public class InterstitialActivity extends AppCompatActivity {
-    public static final String AD_UNIT = "interstitial_3402:4203";
+    public static final String AD_UNIT = "interstitial_3405:4204";
+//    public static final String AD_UNIT = "interstitial_3402:4203";
 
     Toolbar mToolBar;
     EditText mEditText;

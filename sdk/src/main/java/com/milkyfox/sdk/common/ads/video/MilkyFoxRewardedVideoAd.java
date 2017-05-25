@@ -49,6 +49,8 @@ class MilkyFoxRewardedVideoAd extends MilkyFoxBaseAd {
 
     private Long mLastLoadTime = null;
 
+    private volatile boolean loadNotified = false;
+
     private static final Boolean syncList = false;
     private List<BaseRewardedVideoController> mRewardedVideoControllerList = new ArrayList<BaseRewardedVideoController>();
 
@@ -127,6 +129,7 @@ class MilkyFoxRewardedVideoAd extends MilkyFoxBaseAd {
     }
 
     public void show() {
+        loadNotified = false;
         if (isLoaded()) {
             try {
                 boolean shown = false;
@@ -156,9 +159,11 @@ class MilkyFoxRewardedVideoAd extends MilkyFoxBaseAd {
     }
 
     private void notifyLoaded() {
-        if (isDestroyed()) {
+        if (isDestroyed() || loadNotified) {
             return;
         }
+
+        loadNotified = true;
 
         for (IMilkyFoxRewardedVideoListener listener : mListeners) {
             listener.load();
