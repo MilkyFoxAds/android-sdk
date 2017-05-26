@@ -45,6 +45,17 @@ android {
             signingConfig signingConfigs.releaseConfig
         }
     }
+
+    flavorDimensions "type"
+
+    productFlavors {
+        jar {
+            dimension "type"
+        }
+        aar {
+            dimension "type"
+        }
+    }
 }
 
 dependencies {
@@ -56,5 +67,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.2.0'
     testCompile 'junit:junit:4.12'
 
-    compile project(':sdk')
+    aarCompile project(path: ':sdk', configuration: 'aarRelease')
+    jarCompile project(path: ':sdk', configuration: 'jarRelease')
 }

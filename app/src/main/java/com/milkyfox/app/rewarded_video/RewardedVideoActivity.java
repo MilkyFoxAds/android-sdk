@@ -21,8 +21,8 @@ import com.milkyfox.sdk.common.ads.video.IMilkyFoxRewardedVideoListener;
 import com.milkyfox.sdk.common.ads.video.MilkyFoxRewardedVideo;
 
 public class RewardedVideoActivity extends AppCompatActivity {
-//    public static final String AD_UNIT = "video_3404:4204";
-    public static final String AD_UNIT = "video_3403:4203";
+    public static final String AD_UNIT = "video_3404:4204";
+//    public static final String AD_UNIT = "video_3403:4203";
 
     Toolbar mToolBar;
     EditText mEditText;
