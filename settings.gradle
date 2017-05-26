@@ -6,4 +6,4 @@
  * **********************
  */
 
-include ':app', ':sdk', ':AppLovin', ':UnityAds', ':AdColony', ':Vungle'
+include ':app', ':sdk', ':AppLovin', ':UnityAds', ':AdColony', ':Vungle', ':VungleDagger', ':VungleInject'

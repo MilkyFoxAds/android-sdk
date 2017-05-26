@@ -100,5 +100,7 @@ dependencies {
     jarCompile project(':AdColony')
 
     //Vungle
+    jarCompile project(':VungleDagger')
+    jarCompile project(':VungleInject')
     jarCompile project(':Vungle')
 }
