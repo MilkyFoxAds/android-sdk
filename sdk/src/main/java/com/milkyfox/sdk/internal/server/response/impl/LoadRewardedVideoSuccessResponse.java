@@ -13,6 +13,8 @@ import com.milkyfox.sdk.internal.server.request.impl.data.ad.BaseAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.AdMobRewardedVideoAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.AdcolonyRewardedVideoAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.AppLovinRewardedVideoAdData;
+import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.MoPubRewardedVideoAdData;
+import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.StartAppRewardedVideoAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.UnityAdsRewardedVideoAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.VungleRewardedVideoAdData;
 
@@ -22,7 +24,7 @@ import org.json.JSONObject;
 
 public class LoadRewardedVideoSuccessResponse extends BaseLoadAdSuccessResponse {
 
-    private enum AdType {admob, applovin, unityads, adcolony, vungle}
+    private enum AdType {admob, applovin, unityads, adcolony, vungle, mopub, startapp}
 
     public LoadRewardedVideoSuccessResponse(String responseString, int requestId, LoadAdData loadAdData) {
         super(responseString, requestId, loadAdData);
@@ -59,6 +61,14 @@ public class LoadRewardedVideoSuccessResponse extends BaseLoadAdSuccessResponse 
                         }
                         case vungle: {
                             data = new VungleRewardedVideoAdData();
+                            break;
+                        }
+                        case mopub: {
+                            data = new MoPubRewardedVideoAdData();
+                            break;
+                        }
+                        case startapp: {
+                            data = new StartAppRewardedVideoAdData();
                             break;
                         }
                     }

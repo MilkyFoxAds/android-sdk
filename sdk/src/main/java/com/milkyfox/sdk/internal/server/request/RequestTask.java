@@ -102,7 +102,6 @@ public abstract class RequestTask<S extends BaseResponse, D> extends BaseRequest
             }
 
             response = streamToString(inputStream);
-
 //            MilkyFoxLog.log("response: " + response);
 
             if (error) {

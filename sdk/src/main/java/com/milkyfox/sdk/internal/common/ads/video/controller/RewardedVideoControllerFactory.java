@@ -11,12 +11,16 @@ package com.milkyfox.sdk.internal.common.ads.video.controller;
 import com.milkyfox.sdk.internal.common.ads.video.controller.impl.AdMobRewardedVideoController;
 import com.milkyfox.sdk.internal.common.ads.video.controller.impl.AdcolonyRewardedVideoController;
 import com.milkyfox.sdk.internal.common.ads.video.controller.impl.AppLovinRewardedVideoController;
+import com.milkyfox.sdk.internal.common.ads.video.controller.impl.MoPubRewardedVideoController;
+import com.milkyfox.sdk.internal.common.ads.video.controller.impl.StartAppRewardedVideoController;
 import com.milkyfox.sdk.internal.common.ads.video.controller.impl.UnityAdsRewardedVideoController;
 import com.milkyfox.sdk.internal.common.ads.video.controller.impl.VungleRewardedVideoController;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.BaseAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.AdMobRewardedVideoAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.AdcolonyRewardedVideoAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.AppLovinRewardedVideoAdData;
+import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.MoPubRewardedVideoAdData;
+import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.StartAppRewardedVideoAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.UnityAdsRewardedVideoAdData;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.rewarded_video.VungleRewardedVideoAdData;
 
@@ -36,6 +40,12 @@ public class RewardedVideoControllerFactory {
         }
         if (adData instanceof VungleRewardedVideoAdData) {
             return new VungleRewardedVideoController((VungleRewardedVideoAdData) adData, listener);
+        }
+        if (adData instanceof MoPubRewardedVideoAdData) {
+            return new MoPubRewardedVideoController((MoPubRewardedVideoAdData) adData, listener);
+        }
+        if (adData instanceof StartAppRewardedVideoAdData) {
+            return new StartAppRewardedVideoController((StartAppRewardedVideoAdData) adData, listener);
         }
         return null;
     }

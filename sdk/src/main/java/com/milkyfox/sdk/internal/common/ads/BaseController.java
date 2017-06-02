@@ -53,4 +53,13 @@ public abstract class BaseController<T extends BaseAdData> {
         }
         return implemented;
     }
+
+    protected boolean isServiceImplemented(Context context, String serviceName) {
+        boolean implemented = ManifestChecker.isServiceImplemented(context, serviceName);
+        if (!implemented) {
+            notifyFailed(serviceName + " not implemented in AndroidManifest.xml");
+        }
+        return implemented;
+    }
+
 }
