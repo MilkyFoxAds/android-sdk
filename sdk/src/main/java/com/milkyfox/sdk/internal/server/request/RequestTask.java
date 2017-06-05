@@ -17,15 +17,19 @@ import com.milkyfox.sdk.internal.utils.GetParamsHelper;
 import com.milkyfox.sdk.internal.utils.MilkyFoxLog;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.TreeMap;
 import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 public abstract class RequestTask<S extends BaseResponse, D> extends BaseRequestTask<D> {
     private static final int TIMEOUT = 30000;
@@ -77,7 +81,21 @@ public abstract class RequestTask<S extends BaseResponse, D> extends BaseRequest
             connection.setRequestMethod(getRequestMethod().name());
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setRequestProperty("Accept", "application/json");
+
+            if (getRequestMethod() == RequestMethods.POST) {
+                connection.setRequestProperty("Accept-Encoding", GZIP);
+                connection.setRequestProperty("Content-Encoding", GZIP);
+            }
             connection.setDoInput(true);
+            JSONObject jsonRequest = getRequestJson();
+
+            if (jsonRequest != null) {
+                connection.setDoOutput(true);
+                OutputStreamWriter outStreamWriter = new OutputStreamWriter(
+                        new BufferedOutputStream(new GZIPOutputStream(connection.getOutputStream())));
+                outStreamWriter.write(jsonRequest.toString());
+                outStreamWriter.close();
+            }
 
             InputStream inputStream;
 
@@ -127,6 +145,10 @@ public abstract class RequestTask<S extends BaseResponse, D> extends BaseRequest
         }
 
         MilkyFoxLog.log(logString + "response status = " + mResponseStatus);
+    }
+
+    public JSONObject getRequestJson() throws JSONException{
+        return null;
     }
 
     private String streamToString(InputStream stream) throws IOException {

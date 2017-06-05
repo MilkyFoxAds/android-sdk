@@ -29,6 +29,6 @@ public class HmacHelper {
 //            hash.append(hex);
 //        }
 //        String hex = hash.toString();
-        return Base64.encodeToString(result , Base64.DEFAULT);
+        return Base64.encodeToString(result , Base64.DEFAULT).trim();
     }
 }

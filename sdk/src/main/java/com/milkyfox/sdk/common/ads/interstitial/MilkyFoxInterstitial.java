@@ -19,17 +19,23 @@ import com.milkyfox.sdk.internal.common.ads.interstitial.controller.Interstitial
 import com.milkyfox.sdk.internal.server.RequestManager;
 import com.milkyfox.sdk.internal.server.listeners.BaseRequestListener;
 import com.milkyfox.sdk.internal.server.request.impl.data.LoadAdData;
+import com.milkyfox.sdk.internal.server.request.impl.data.LogElement;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.BaseAdData;
 import com.milkyfox.sdk.internal.server.response.impl.ErrorResponse;
 import com.milkyfox.sdk.internal.server.response.impl.LoadInterstitialSuccessResponse;
+import com.milkyfox.sdk.internal.server.response.impl.LoadLogSuccessResponse;
 import com.milkyfox.sdk.internal.utils.MilkyFoxLog;
 
-import java.util.LinkedHashSet;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 
 public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstitialController, LoadInterstitialSuccessResponse> {
+    private List<LogElement> mLogElements;
+    private Date mDate;
+
     private IMilkyFoxInterstitialListener mListener = null;
 
     public MilkyFoxInterstitial(Activity activity, String adUnit) {
@@ -96,9 +102,11 @@ public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstiti
         if (mStatus == MilkyFoxAdStatus.LOADING || mStatus == MilkyFoxAdStatus.LOADED) {
             if (mCurController != null && mActivity != null) {
                 MilkyFoxLog.log(String.format("load %s", mCurController.getDisplay()));
+                addLog(true);
+                sendLog();
             }
             mStatus = MilkyFoxAdStatus.LOADED;
-            if(mListener!=null){
+            if (mListener != null) {
                 mListener.load(this);
             }
         }
@@ -110,7 +118,7 @@ public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstiti
         }
         if (mStatus == MilkyFoxAdStatus.LOADING) {
             mStatus = MilkyFoxAdStatus.IDLE;
-            if(mListener!=null){
+            if (mListener != null) {
                 mListener.fail(this);
             }
         }
@@ -122,7 +130,7 @@ public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstiti
         }
         if (mStatus == MilkyFoxAdStatus.LOADED) {
             mStatus = MilkyFoxAdStatus.SHOWING;
-            if(mListener!=null){
+            if (mListener != null) {
                 mListener.show(this);
             }
         }
@@ -133,7 +141,7 @@ public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstiti
             return;
         }
         if (mStatus == MilkyFoxAdStatus.SHOWING) {
-            if(mListener!=null){
+            if (mListener != null) {
                 mListener.click(this);
             }
         }
@@ -145,13 +153,47 @@ public class MilkyFoxInterstitial extends MilkyFoxBaseMediationAd<BaseInterstiti
         }
         if (mStatus == MilkyFoxAdStatus.SHOWING || mStatus == MilkyFoxAdStatus.LOADED) {
             mStatus = MilkyFoxAdStatus.IDLE;
-            if(mListener!=null){
+            if (mListener != null) {
                 mListener.close(this);
             }
         }
     }
 
+    private void addLog(boolean loaded) {
+        Date newDate = new Date();
+        if (mCurController != null) {
+            long duration = newDate.getTime() - mDate.getTime();
+            mLogElements.add(new LogElement(mCurController.mData.mBannerId, duration, loaded));
+        }
+        mDate = newDate;
+    }
+
+    private void sendLog() {
+        RequestManager.getInstance(mActivity).log(mLogElements, new BaseRequestListener<LoadLogSuccessResponse>() {
+            @Override
+            public void success(LoadLogSuccessResponse response) {
+
+            }
+
+            @Override
+            public void error(ErrorResponse response) {
+
+            }
+
+            @Override
+            public void canceled() {
+
+            }
+        });
+    }
+
     private void tryToLoadNextAd() {
+        if (mId == -1) {
+            mLogElements = new LinkedList<LogElement>();
+            mDate = new Date();
+        } else {
+            addLog(false);
+        }
         if (mStatus == MilkyFoxAdStatus.LOADING && hasNextAd()) {
             mId++;
             try {

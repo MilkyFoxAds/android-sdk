@@ -16,10 +16,13 @@ import android.os.Message;
 import com.milkyfox.sdk.internal.server.listeners.IRequestListener;
 import com.milkyfox.sdk.internal.server.request.IRequestTask;
 import com.milkyfox.sdk.internal.server.request.impl.InterstitialRequestTask;
+import com.milkyfox.sdk.internal.server.request.impl.LogRequestTask;
 import com.milkyfox.sdk.internal.server.request.impl.RewardedVideoRequestTask;
 import com.milkyfox.sdk.internal.server.request.impl.data.LoadAdData;
+import com.milkyfox.sdk.internal.server.request.impl.data.LogElement;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -44,6 +47,10 @@ public class RequestManager {
     //requests
     private final BlockingQueue<Runnable> mRequestBlockingQueue;
     private final ThreadPoolExecutor mRequestThreadPool;
+    //log
+    private final BlockingQueue<Runnable> mLogBlockingQueue;
+    private final ThreadPoolExecutor mLogThreadPool;
+
     private volatile Integer mId = 0;
     private final Boolean syncId = false;
     private Handler mHandler;
@@ -56,6 +63,14 @@ public class RequestManager {
         mRequestThreadPool = new ThreadPoolExecutor(
                 NUMBER_OF_CORES,       // Initial pool size
                 NUMBER_OF_CORES,       // Max pool size
+                KEEP_ALIVE_TIME,
+                KEEP_ALIVE_TIME_UNIT,
+                mRequestBlockingQueue);
+
+        mLogBlockingQueue = new LinkedBlockingQueue<Runnable>();
+        mLogThreadPool = new ThreadPoolExecutor(
+                1,       // Initial pool size
+                1,       // Max pool size
                 KEEP_ALIVE_TIME,
                 KEEP_ALIVE_TIME_UNIT,
                 mRequestBlockingQueue);
@@ -95,6 +110,13 @@ public class RequestManager {
         return requestTask;
     }
 
+    public IRequestTask log(List<LogElement> logElements, IRequestListener requestListener) {
+        int requestId = getRequestId();
+        IRequestTask requestTask = new LogRequestTask(this, requestId, logElements, requestListener);
+        mLogThreadPool.execute(requestTask.getThread());
+        return requestTask;
+    }
+
     private int getRequestId() {
         int requestId;
         synchronized (syncId) {
@@ -110,6 +132,7 @@ public class RequestManager {
 
     public void cancelAllTasks() {
         mRequestBlockingQueue.clear();
+        mLogBlockingQueue.clear();
     }
 
     public Context getContext() {

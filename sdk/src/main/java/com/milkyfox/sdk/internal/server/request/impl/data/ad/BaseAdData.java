@@ -12,6 +12,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public abstract class BaseAdData {
+    public int mBannerId;
+
     public String getName() {
         return "base";
     }
@@ -32,6 +34,7 @@ public abstract class BaseAdData {
     }
 
     public void parse(JSONObject jsonObject) throws JSONException {
+        mBannerId = jsonObject.optInt("banner_id", -1);
     }
 
 }

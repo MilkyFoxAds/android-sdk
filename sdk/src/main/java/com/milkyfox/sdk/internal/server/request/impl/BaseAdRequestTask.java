@@ -15,6 +15,7 @@ import com.milkyfox.sdk.internal.server.listeners.IRequestListener;
 import com.milkyfox.sdk.internal.server.request.RequestTask;
 import com.milkyfox.sdk.internal.server.request.impl.data.LoadAdData;
 import com.milkyfox.sdk.internal.server.response.BaseResponse;
+import com.milkyfox.sdk.internal.utils.DeviceUtils;
 import com.milkyfox.sdk.internal.utils.GetParamsHelper;
 import com.milkyfox.sdk.internal.utils.HmacHelper;
 import com.milkyfox.sdk.internal.utils.MilkyFoxLog;
@@ -47,6 +48,7 @@ public abstract class BaseAdRequestTask<S extends BaseResponse> extends RequestT
             map.put("bundle", bundle);
             map.put("os", "android");
             map.put("ad_unit", split[0]);
+            map.put("uid", DeviceUtils.getCustomUUID(getContext()));
 
             String sign = null;
             String data = GetParamsHelper.encodeGetParams(map);
