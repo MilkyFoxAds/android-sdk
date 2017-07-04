@@ -36,6 +36,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
+            android:name=".interstitial.InterstitialSataticAdapterActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/interstitial_static_adapter"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name=".rewarded_video.RewardedVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/rewarded_video"

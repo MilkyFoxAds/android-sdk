@@ -12,8 +12,8 @@ ext {
     libraryCompileSdkVersion = 25
     libraryBuildToolsVersion = '25.0.0'
 
-    libraryVersion = '1.0.3'
-    libraryVersionCode = 3
+    libraryVersion = '1.0.4'
+    libraryVersionCode = 4
 }
 
 android {

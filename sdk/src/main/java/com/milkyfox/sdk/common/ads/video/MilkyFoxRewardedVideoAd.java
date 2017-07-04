@@ -19,8 +19,10 @@ import com.milkyfox.sdk.internal.common.ads.video.controller.RewardedVideoContro
 import com.milkyfox.sdk.internal.server.RequestManager;
 import com.milkyfox.sdk.internal.server.listeners.BaseRequestListener;
 import com.milkyfox.sdk.internal.server.request.impl.data.LoadAdData;
+import com.milkyfox.sdk.internal.server.request.impl.data.LogElement;
 import com.milkyfox.sdk.internal.server.request.impl.data.ad.BaseAdData;
 import com.milkyfox.sdk.internal.server.response.impl.ErrorResponse;
+import com.milkyfox.sdk.internal.server.response.impl.LoadLogSuccessResponse;
 import com.milkyfox.sdk.internal.server.response.impl.LoadRewardedVideoSuccessResponse;
 import com.milkyfox.sdk.internal.utils.MilkyFoxLog;
 import com.milkyfox.sdk.internal.utils.app_lifecycle.AppLifecycleHelper;
@@ -29,6 +31,7 @@ import com.milkyfox.sdk.internal.utils.app_lifecycle.IAppLifeCycleListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.Timer;
@@ -134,17 +137,36 @@ class MilkyFoxRewardedVideoAd extends MilkyFoxBaseAd {
             try {
                 boolean shown = false;
                 synchronized (syncList) {
+                    List<LogElement> logElements = new LinkedList<LogElement>();
                     for (BaseRewardedVideoController rewardedVideoController : mRewardedVideoControllerList) {
                         if (rewardedVideoController.isLoaded()) {
+                            logElements.add(new LogElement(rewardedVideoController.mData.mBannerId, 0, true));
                             rewardedVideoController.show(mActivity);
                             MilkyFoxLog.log(String.format("showing %s", rewardedVideoController.getDisplay()));
                             shown = true;
                             mStatus = MilkyFoxAdStatus.SHOWING;
                             break;
                         } else {
-                            rewardedVideoController.preload(mActivity);
+                            logElements.add(new LogElement(rewardedVideoController.mData.mBannerId, 0, false));
                         }
                     }
+
+                    RequestManager.getInstance(mActivity).log(logElements, new BaseRequestListener<LoadLogSuccessResponse>() {
+                        @Override
+                        public void success(LoadLogSuccessResponse response) {
+
+                        }
+
+                        @Override
+                        public void error(ErrorResponse response) {
+
+                        }
+
+                        @Override
+                        public void canceled() {
+
+                        }
+                    });
                 }
                 if (!shown) {
                     notifyClosed();

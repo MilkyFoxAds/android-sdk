@@ -111,10 +111,13 @@ public class RequestManager {
     }
 
     public IRequestTask log(List<LogElement> logElements, IRequestListener requestListener) {
-        int requestId = getRequestId();
-        IRequestTask requestTask = new LogRequestTask(this, requestId, logElements, requestListener);
-        mLogThreadPool.execute(requestTask.getThread());
-        return requestTask;
+        if (logElements != null && logElements.size() > 0) {
+            int requestId = getRequestId();
+            IRequestTask requestTask = new LogRequestTask(this, requestId, logElements, requestListener);
+            mLogThreadPool.execute(requestTask.getThread());
+            return requestTask;
+        }
+        return null;
     }
 
     private int getRequestId() {
